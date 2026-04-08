@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stephan Viray — Portfolio</title>
+    <meta name="description"
+        content="Stephan F. Viray — Graduating IT Student, Data Annotation Specialist, Video Editor, and Builder. Portfolio showcasing projects, skills, and experience.">
+    <meta name="author" content="Stephan F. Viray">
+    <meta name="theme-color" content="#fafaf9">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+        rel="stylesheet">
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- ===== LOADER ===== -->
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <span class="loader-name">Stephan Viray</span>
+            <div class="loader-line"></div>
+        </div>
+    </div>
+
+    <!-- ===== NAV ===== -->
+    <nav class="nav" id="nav">
+        <a href="#hero" class="nav-brand" id="nav-brand">SV</a>
+        <div class="nav-links" id="nav-links">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#photos" class="nav-link">Photos</a>
+            <a href="#videos" class="nav-link">Videos</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+            <span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <p class="hero-intro reveal-text">Hello, I'm</p>
+            <h1 class="hero-name reveal-text">
+                <span class="hero-first">Stephan</span>
+                <span class="hero-last"><em>Viray</em></span>
+            </h1>
+            <div class="hero-rule reveal-text"></div>
+            <p class="hero-tagline reveal-text">
+                Graduating IT Student · Data Specialist · Video Editor · Builder
+            </p>
+            <div class="hero-meta reveal-text">
+                <span>Cagayan de Oro City, Philippines</span>
+                <span class="meta-dot"></span>
+                <span>Available for work</span>
+            </div>
+            <div class="hero-cta reveal-text">
+                <a href="#projects" class="btn btn-dark" id="cta-work">View Work</a>
+                <a href="#contact" class="btn btn-ghost" id="cta-contact">Get in Touch</a>
+            </div>
+        </div>
+        <div class="scroll-cue" id="scroll-cue">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-label reveal">About</div>
+            <div class="two-col">
+                <div class="col-left reveal">
+                    <h2 class="heading-lg">
+                        Detail-oriented <em>IT student</em> with hands-on experience in data annotation, customer
+                        support, and video production.
+                    </h2>
+                </div>
+                <div class="col-right reveal">
+                    <p>
+                        Skilled in AI tools, design software, and remote collaboration. Proven ability to deliver
+                        quality results independently and within teams across diverse digital environments.
+                    </p>
+                    <p>
+                        From training machine learning models through precise data labeling to producing polished video
+                        content — I bring a multi-disciplinary approach to every project. Currently finishing my BS in
+                        Information Technology at USTP, graduating 2026.
+                    </p>
+                    <div class="about-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Education</span>
+                            <span class="detail-value">BS Information Technology<br><span class="text-muted">USTP —
+                                    2022–2026 (Graduating)</span></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Location</span>
+                            <span class="detail-value">Cagayan de Oro City<br><span
+                                    class="text-muted">Philippines</span></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Email</span>
+                            <span class="detail-value">stephanviray50@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section class="section section-alt" id="experience">
+        <div class="container">
+            <div class="section-label reveal">Experience</div>
+            <div class="experience-list">
+
+                <div class="exp-item reveal" id="exp-remotasks">
+                    <div class="exp-left">
+                        <span class="exp-duration">2+ Years</span>
+                        <span class="exp-type">Remote</span>
+                    </div>
+                    <div class="exp-right">
+                        <h3 class="exp-title">Data Annotation Specialist</h3>
+                        <p class="exp-company">Remotasks</p>
+                        <ul class="exp-list">
+                            <li>Performed data annotation and labeling for ML model training, maintaining high accuracy
+                                across diverse datasets</li>
+                            <li>Reviewed and validated annotated data to ensure consistency and compliance with project
+                                guidelines</li>
+                            <li>Collaborated with remote teams to meet deadlines and adapt to evolving requirements</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exp-item reveal" id="exp-mabang">
+                    <div class="exp-left">
+                        <span class="exp-duration">1 Year</span>
+                        <span class="exp-type">Work From Home</span>
+                    </div>
+                    <div class="exp-right">
+                        <h3 class="exp-title">Customer Support Representative</h3>
+                        <p class="exp-company">MABANG China</p>
+                        <ul class="exp-list">
+                            <li>Provided timely support resolving product and service inquiries through effective
+                                communication</li>
+                            <li>Documented interactions and troubleshooting steps to maintain an internal knowledge base
+                            </li>
+                            <li>Identified recurring issues and escalated to relevant departments to improve service
+                                quality</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exp-item reveal" id="exp-freelance">
+                    <div class="exp-left">
+                        <span class="exp-duration">1 Year</span>
+                        <span class="exp-type">Remote / Freelance</span>
+                    </div>
+                    <div class="exp-right">
+                        <h3 class="exp-title">Video Editor</h3>
+                        <p class="exp-company">Freelance / Client-Based</p>
+                        <ul class="exp-list">
+                            <li>Edited and produced video content for multiple clients using industry-standard tools
+                            </li>
+                            <li>Applied color grading, audio mixing, and motion graphics to deliver broadcast-ready
+                                content</li>
+                            <li>Managed client feedback cycles ensuring outputs met or exceeded expectations</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section class="section" id="skills">
+        <div class="container">
+            <div class="section-label reveal">Skills</div>
+            <div class="skills-layout">
+                <div class="skill-group reveal">
+                    <h4 class="skill-group-title">Technical</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AutoCAD</span>
+                        <span class="skill-tag">SketchUp</span>
+                        <span class="skill-tag">Microsoft Excel</span>
+                        <span class="skill-tag">Microsoft Word</span>
+                        <span class="skill-tag">Google Suite</span>
+                    </div>
+                </div>
+                <div class="skill-group reveal">
+                    <h4 class="skill-group-title">Design & Video</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Adobe Photoshop</span>
+                        <span class="skill-tag">Adobe Premiere Pro</span>
+                        <span class="skill-tag">DaVinci Resolve</span>
+                        <span class="skill-tag">After Effects</span>
+                        <span class="skill-tag">CapCut</span>
+                    </div>
+                </div>
+                <div class="skill-group reveal">
+                    <h4 class="skill-group-title">AI Tools</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">ChatGPT</span>
+                        <span class="skill-tag">Claude</span>
+                        <span class="skill-tag">Gemini</span>
+                        <span class="skill-tag">Quillbot</span>
+                        <span class="skill-tag">Blackbox AI</span>
+                    </div>
+                </div>
+                <div class="skill-group reveal">
+                    <h4 class="skill-group-title">Soft Skills</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Leadership</span>
+                        <span class="skill-tag">Adaptability</span>
+                        <span class="skill-tag">Teamwork</span>
+                        <span class="skill-tag">Time Management</span>
+                        <span class="skill-tag">Communication</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section class="section section-alt" id="projects">
+        <div class="container">
+            <div class="section-label reveal">Projects</div>
+            <div class="projects-list">
+
+                <article class="project-item reveal" id="project-smoke">
+                    <div class="project-number">01</div>
+                    <div class="project-body">
+                        <h3 class="project-title">Smart Smoke Detection System</h3>
+                        <p class="project-subtitle">Using YOLOv8 — Real-Time Hazard Prevention</p>
+                        <p class="project-desc">
+                            Developed a real-time smoke detection system leveraging YOLOv8 deep learning architecture
+                            for accurate and rapid hazard identification. Integrated computer vision techniques to
+                            process live camera feeds and trigger timely alerts, demonstrating applied AI and IoT
+                            skills.
+                        </p>
+                        <div class="project-tags">
+                            <span>YOLOv8</span>
+                            <span>Computer Vision</span>
+                            <span>Python</span>
+                            <span>IoT</span>
+                        </div>
+                    </div>
+                    <div class="project-image">
+                        <img src="assets/images/project-smarttruck.png" alt="Smart Smoke Detection System"
+                            loading="lazy">
+                    </div>
+                </article>
+
+                <article class="project-item reveal" id="project-rover">
+                    <div class="project-number">02</div>
+                    <div class="project-body">
+                        <h3 class="project-title">Autonomous Rover</h3>
+                        <p class="project-subtitle">Pixhawk-Powered with Mobile Telemetry</p>
+                        <p class="project-desc">
+                            A Pixhawk-powered autonomous rover with sonar collision avoidance, camera gimbal control,
+                            and real-time mobile telemetry. Custom Android app with joystick and gamepad integration.
+                        </p>
+                        <div class="project-tags">
+                            <span>Pixhawk</span>
+                            <span>MAVLink</span>
+                            <span>Arduino</span>
+                            <span>Android</span>
+                        </div>
+                    </div>
+                    <div class="project-image">
+                        <img src="assets/images/project-rover.png" alt="Autonomous Rover" loading="lazy">
+                    </div>
+                </article>
+
+                <article class="project-item reveal" id="project-drone">
+                    <div class="project-number">03</div>
+                    <div class="project-body">
+                        <h3 class="project-title">Custom Drone Build</h3>
+                        <p class="project-subtitle">FPV Quadcopter with Autonomous Navigation</p>
+                        <p class="project-desc">
+                            A custom FPV quadcopter with autonomous waypoint navigation, GPS hold, and first-person-view
+                            camera feed using ArduPilot firmware.
+                        </p>
+                        <div class="project-tags">
+                            <span>ArduPilot</span>
+                            <span>GPS</span>
+                            <span>FPV</span>
+                        </div>
+                    </div>
+                    <div class="project-image">
+                        <img src="assets/images/project-drone.png" alt="Custom Drone Build" loading="lazy">
+                    </div>
+                </article>
+
+                <article class="project-item reveal" id="project-app">
+                    <div class="project-number">04</div>
+                    <div class="project-body">
+                        <h3 class="project-title">Mobile Control App</h3>
+                        <p class="project-subtitle">Android Telemetry Dashboard</p>
+                        <p class="project-desc">
+                            Android application for real-time rover control with joystick input, telemetry dashboard,
+                            sensor monitoring, and iPega gamepad integration.
+                        </p>
+                        <div class="project-tags">
+                            <span>Android</span>
+                            <span>Java</span>
+                            <span>MAVLink</span>
+                        </div>
+                    </div>
+                    <div class="project-image">
+                        <img src="assets/images/project-app.png" alt="Mobile Control App" loading="lazy">
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PHOTOS ===== -->
+    <section class="section" id="photos">
+        <div class="container">
+            <div class="section-label reveal">Photos</div>
+            <div class="photos-header reveal">
+                <h2 class="heading-lg">Project <em>Photos</em></h2>
+                <div class="photo-filters">
+                    <button class="photo-filter active" data-filter="all" id="filter-all">All</button>
+                    <button class="photo-filter" data-filter="rc" id="filter-rc">RC</button>
+                    <button class="photo-filter" data-filter="graphics" id="filter-graphics">Graphics</button>
+                </div>
+            </div>
+
+            <div class="photo-slider">
+                <div class="photo-track" id="gallery-photos">
+                    <!-- RC Photos -->
+                    <div class="gallery-item reveal" data-category="rc" id="gallery-1">
+                        <img src="PHOTO/RC1.jpg" alt="RC Project 1" loading="lazy">
+                        <div class="gallery-caption">
+                            <span>RC Build</span>
+                            <span class="gallery-cat">RC</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item reveal" data-category="rc" id="gallery-2">
+                        <img src="PHOTO/RC2.jpg" alt="RC Project 2" loading="lazy">
+                        <div class="gallery-caption">
+                            <span>RC Project</span>
+                            <span class="gallery-cat">RC</span>
+                        </div>
+                    </div>
+
+                    <!-- Graphics Photos -->
+                    <div class="gallery-item reveal" data-category="graphics" id="gallery-3">
+                        <img src="PHOTO/graphics1.jpg" alt="Graphics Work 1" loading="lazy">
+                        <div class="gallery-caption">
+                            <span>Graphics Design</span>
+                            <span class="gallery-cat">Graphics</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item reveal" data-category="graphics" id="gallery-4">
+                        <img src="PHOTO/graphics2.jpg" alt="Graphics Work 2" loading="lazy">
+                        <div class="gallery-caption">
+                            <span>Graphics Design</span>
+                            <span class="gallery-cat">Graphics</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item reveal" data-category="graphics" id="gallery-5">
+                        <img src="PHOTO/graphics3.jpg" alt="Graphics Work 3" loading="lazy">
+                        <div class="gallery-caption">
+                            <span>Graphics Design</span>
+                            <span class="gallery-cat">Graphics</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item reveal" data-category="graphics" id="gallery-6">
+                        <img src="PHOTO/graphics4.jpg" alt="Graphics Work 4" loading="lazy">
+                        <div class="gallery-caption">
+                            <span>Graphics Design</span>
+                            <span class="gallery-cat">Graphics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== VIDEOS ===== -->
+    <section class="section section-alt" id="videos">
+        <div class="container">
+            <div class="section-label reveal">Videos</div>
+            <h2 class="heading-lg reveal" style="margin-bottom: 40px;">Video <em>Work</em></h2>
+
+            <div class="gallery-grid" id="gallery-videos">
+                <div class="gallery-item video-item reveal" id="vid-1">
+                    <video controls preload="metadata" poster="">
+                        <source src="VIDEO/3d print.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-label">
+                        <span>3D Print</span>
+                    </div>
+                </div>
+                <div class="gallery-item video-item reveal" id="vid-2">
+                    <video controls preload="metadata" poster="">
+                        <source src="VIDEO/DIBUJO MONTAGE_2.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-label">
+                        <span>Dibujo Montage</span>
+                    </div>
+                </div>
+                <div class="gallery-item video-item reveal" id="vid-3">
+                    <video controls preload="metadata" poster="">
+                        <source src="VIDEO/tshirt brand.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-label">
+                        <span>T-Shirt Brand</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox">
+        <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
+        <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">&#8592;</button>
+        <button class="lb-nav lb-next" id="lb-next" aria-label="Next">&#8594;</button>
+        <img id="lb-img" src="" alt="Gallery image">
+        <div class="lb-caption" id="lb-caption"></div>
+    </div>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section section-alt" id="contact">
+        <div class="container">
+            <div class="section-label reveal">Contact</div>
+            <div class="contact-layout">
+                <div class="contact-left reveal">
+                    <h2 class="heading-lg">Let's work <em>together.</em></h2>
+                    <p class="contact-text">
+                        Have a project in mind, want to collaborate, or just want to say hello? Feel free to reach out.
+                    </p>
+                    <div class="contact-info-list">
+                        <div class="contact-row">
+                            <span class="contact-label">Email</span>
+                            <a href="mailto:stephanviray50@gmail.com" class="contact-value">stephanviray50@gmail.com</a>
+                        </div>
+                        <div class="contact-row">
+                            <span class="contact-label">Phone</span>
+                            <a href="tel:+639391018450" class="contact-value">0939 101 8450</a>
+                        </div>
+                        <div class="contact-row">
+                            <span class="contact-label">Location</span>
+                            <span class="contact-value">Cagayan de Oro City, Philippines</span>
+                        </div>
+                    </div>
+
+                </div>
+                <form class="contact-form reveal" id="contact-form"
+                    action="https://formsubmit.co/stephanviray50@gmail.com" method="POST">
+                    <!-- Formsubmit config -->
+                    <input type="hidden" name="_subject" value="New message from your portfolio!">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="http://localhost:3000/thanks.html">
+                    <input type="text" name="_honey" style="display:none">
+                    <div class="form-field">
+                        <label for="f-name">Name</label>
+                        <input type="text" id="f-name" name="name" required placeholder="Your name">
+                    </div>
+                    <div class="form-field">
+                        <label for="f-email">Email</label>
+                        <input type="email" id="f-email" name="email" required placeholder="Your email">
+                    </div>
+                    <div class="form-field">
+                        <label for="f-message">Message</label>
+                        <textarea id="f-message" name="message" rows="5" required
+                            placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark btn-full" id="form-submit">Send Message →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="footer">
+        <div class="container footer-inner">
+            <span class="footer-brand">Stephan <em>Viray</em></span>
+            <p>© 2026 — Designed & built by Stephan</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
