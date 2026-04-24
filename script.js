@@ -1,15 +1,20 @@
 /* ============================================
-   STEPHAN VIRAY — MINIMAL PORTFOLIO JS
+   STEPHAN VIRAY — PORTFOLIO JS
+   Coffee-Tech Inspired — Dark/Warm Zones
    ============================================ */
+
+// ===== SCROLL TO TOP ON REFRESH =====
+history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
 
 // ===== LOADER =====
 window.addEventListener('load', () => {
     setTimeout(() => {
         document.getElementById('loader').classList.add('hidden');
-    }, 1000);
+    }, 1200);
 });
 
-// ===== THREE.JS — SUBTLE WIREFRAME GEOMETRY =====
+// ===== THREE.JS — AMBIENT PARTICLE FIELD =====
 function initHero3D() {
     const canvas = document.getElementById('hero-canvas');
     if (!canvas) return;
@@ -21,66 +26,36 @@ function initHero3D() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
 
-    // Create a sparse network of points and lines
-    const groupCount = 3;
-    const objects = [];
-
-    // Large icosahedron wireframe
-    const geo1 = new THREE.IcosahedronGeometry(4, 1);
-    const mat1 = new THREE.MeshBasicMaterial({
-        wireframe: true,
-        color: 0x1a1a18,
-        transparent: true,
-        opacity: 0.6
-    });
-    const mesh1 = new THREE.Mesh(geo1, mat1);
-    mesh1.position.set(0, 0, 0);
-    scene.add(mesh1);
-    objects.push(mesh1);
-
-    // Smaller dodecahedron
-    const geo2 = new THREE.DodecahedronGeometry(2.5, 0);
-    const mat2 = new THREE.MeshBasicMaterial({
-        wireframe: true,
-        color: 0x1a1a18,
-        transparent: true,
-        opacity: 0.35
-    });
-    const mesh2 = new THREE.Mesh(geo2, mat2);
-    scene.add(mesh2);
-    objects.push(mesh2);
-
-    // Octahedron
-    const geo3 = new THREE.OctahedronGeometry(1.5, 0);
-    const mat3 = new THREE.MeshBasicMaterial({
-        wireframe: true,
-        color: 0x1a1a18,
-        transparent: true,
-        opacity: 0.25
-    });
-    const mesh3 = new THREE.Mesh(geo3, mat3);
-    scene.add(mesh3);
-    objects.push(mesh3);
-
-    // Sparse particles
-    const particleCount = 120;
+    // Sparse floating particles
+    const particleCount = 200;
     const pGeo = new THREE.BufferGeometry();
     const pPositions = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
-        pPositions[i * 3] = (Math.random() - 0.5) * 18;
-        pPositions[i * 3 + 1] = (Math.random() - 0.5) * 18;
-        pPositions[i * 3 + 2] = (Math.random() - 0.5) * 18;
+        pPositions[i * 3] = (Math.random() - 0.5) * 24;
+        pPositions[i * 3 + 1] = (Math.random() - 0.5) * 24;
+        pPositions[i * 3 + 2] = (Math.random() - 0.5) * 24;
     }
     pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
     const pMat = new THREE.PointsMaterial({
-        size: 1.5,
-        color: 0x1a1a18,
+        size: 1.8,
+        color: 0xd46a43,
         transparent: true,
-        opacity: 0.2,
+        opacity: 0.3,
         sizeAttenuation: true
     });
     const particles = new THREE.Points(pGeo, pMat);
     scene.add(particles);
+
+    // Wireframe torus knot
+    const torusGeo = new THREE.TorusKnotGeometry(3, 0.8, 100, 16);
+    const torusMat = new THREE.MeshBasicMaterial({
+        wireframe: true,
+        color: 0xffffff,
+        transparent: true,
+        opacity: 0.06
+    });
+    const torus = new THREE.Mesh(torusGeo, torusMat);
+    scene.add(torus);
 
     camera.position.z = 10;
 
@@ -96,19 +71,14 @@ function initHero3D() {
         requestAnimationFrame(animate);
         const t = clock.getElapsedTime();
 
-        mesh1.rotation.y = t * 0.04;
-        mesh1.rotation.x = t * 0.02;
+        torus.rotation.y = t * 0.05;
+        torus.rotation.x = t * 0.02;
 
-        mesh2.rotation.y = -t * 0.06;
-        mesh2.rotation.z = t * 0.03;
+        particles.rotation.y = t * 0.015;
+        particles.rotation.x = t * 0.005;
 
-        mesh3.rotation.y = t * 0.08;
-        mesh3.rotation.x = -t * 0.04;
-
-        particles.rotation.y = t * 0.01;
-
-        camera.position.x += (mouseX * 1.2 - camera.position.x) * 0.015;
-        camera.position.y += (mouseY * 0.8 - camera.position.y) * 0.015;
+        camera.position.x += (mouseX * 1.5 - camera.position.x) * 0.012;
+        camera.position.y += (mouseY * 1 - camera.position.y) * 0.012;
         camera.lookAt(scene.position);
 
         renderer.render(scene, camera);
@@ -168,138 +138,76 @@ const revealObs = new IntersectionObserver((entries) => {
             revealObs.unobserve(e.target);
         }
     });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.06, rootMargin: '0px 0px -60px 0px' });
 
-document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+// Observe all reveal variants
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger').forEach(el => revealObs.observe(el));
+
+// ===== HORIZONTAL PARALLAX TEXT =====
+const parallaxTexts = document.querySelectorAll('.parallax-text[data-parallax-speed]');
+let scrollTicking = false;
+
+function updateParallaxText() {
+    const scrolled = window.scrollY;
+    parallaxTexts.forEach(el => {
+        const section = el.parentElement;
+        const rect = section.getBoundingClientRect();
+        const sectionCenter = rect.top + rect.height / 2;
+        const viewCenter = window.innerHeight / 2;
+        const offset = (sectionCenter - viewCenter) * parseFloat(el.dataset.parallaxSpeed);
+        el.style.transform = `translateX(${offset}px)`;
+    });
+}
+
+window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+        requestAnimationFrame(() => {
+            updateParallaxText();
+            scrollTicking = false;
+        });
+        scrollTicking = true;
+    }
+}, { passive: true });
 
 // ===== PARALLAX =====
-window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
+(function() {
     const heroContent = document.querySelector('.hero-content');
     const scrollCue = document.getElementById('scroll-cue');
+    const heroCanvas = document.getElementById('hero-canvas');
 
-    if (heroContent && scrolled < window.innerHeight) {
-        heroContent.style.transform = `translateY(${scrolled * 0.25}px)`;
-        heroContent.style.opacity = 1 - scrolled / (window.innerHeight * 0.6);
-    }
-    if (scrollCue) {
-        scrollCue.style.opacity = 1 - scrolled / 250;
-    }
-});
-// ===== PHOTO FILTERS & SLIDER =====
-const filterBtns = document.querySelectorAll('.photo-filter');
-const photoTrack = document.getElementById('gallery-photos');
-const photoItems = document.querySelectorAll('#gallery-photos .gallery-item');
+    let mouseX = 0, mouseY = 0;
+    let targetMouseX = 0, targetMouseY = 0;
 
-let visibleItems = Array.from(photoItems);
-let originalOrder = Array.from(photoItems);
-let autoSlideInterval;
-let isAnimating = false;
+    document.addEventListener('mousemove', (e) => {
+        targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    });
 
-function updateSliderCenter(shiftOffset = 0) {
-    if (!photoTrack || visibleItems.length === 0) return;
-    
-    let itemsPerView = 3;
-    if (window.innerWidth <= 900) itemsPerView = 2;
-    if (window.innerWidth <= 600) itemsPerView = 1;
-    
-    const centerOffset = window.innerWidth <= 600 ? 0 : Math.floor(itemsPerView / 2);
-    const targetCenter = centerOffset + shiftOffset;
-    
-    visibleItems.forEach((item, idx) => {
-        if (idx === targetCenter) {
-            item.classList.add('is-center');
-        } else {
-            item.classList.remove('is-center');
+    function lerpParallax() {
+        mouseX += (targetMouseX - mouseX) * 0.04;
+        mouseY += (targetMouseY - mouseY) * 0.04;
+
+        const scrolled = window.scrollY;
+
+        if (heroContent && scrolled < window.innerHeight) {
+            const scrollFade = 1 - scrolled / (window.innerHeight * 0.5);
+            const scrollY = scrolled * 0.25;
+            heroContent.style.transform = `translateY(${scrollY}px) translate3d(${mouseX * 10}px, ${mouseY * 6}px, 0)`;
+            heroContent.style.opacity = Math.max(0, scrollFade);
         }
-    });
-}
 
-function nextSlide() {
-    let itemsPerView = 3;
-    if (window.innerWidth <= 900) itemsPerView = 2;
-    if (window.innerWidth <= 600) itemsPerView = 1;
+        if (scrollCue) {
+            scrollCue.style.opacity = Math.max(0, 1 - window.scrollY / 200);
+        }
 
-    // Don't scroll if we don't have enough items to loop seamlessly
-    if (!photoTrack || visibleItems.length <= itemsPerView || isAnimating) return;
-    isAnimating = true;
-    
-    photoTrack.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
-    
-    // Apply center styling to the upcoming center item before shifting
-    updateSliderCenter(1);
-    
-    const gap = 16;
-    const offset = visibleItems[0].offsetWidth + gap;
-    photoTrack.style.transform = `translateX(-${offset}px)`;
-    
-    setTimeout(() => {
-        // Snap back instantly
-        photoTrack.style.transition = 'none';
-        
-        // Move the first element physically to the end of the track
-        const firstItem = visibleItems.shift();
-        photoTrack.appendChild(firstItem);
-        visibleItems.push(firstItem);
-        
-        photoTrack.style.transform = `translateX(0px)`;
-        
-        // Reset state
-        updateSliderCenter(0);
-        isAnimating = false;
-    }, 850); // wait slightly longer than CSS transition time
-}
+        if (heroCanvas && scrolled < window.innerHeight) {
+            heroCanvas.style.transform = `translate3d(${mouseX * 12}px, ${mouseY * 8}px, 0)`;
+        }
 
-function startAutoSlide() {
-    stopAutoSlide();
-    autoSlideInterval = setInterval(nextSlide, 1500);
-}
-
-function stopAutoSlide() {
-    if (autoSlideInterval) clearInterval(autoSlideInterval);
-}
-
-window.addEventListener('resize', () => {
-    updateSliderCenter(0);
-});
-
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.getAttribute('data-filter');
-
-        // Reset to original DOM order so filters don't mangle item positions over time
-        photoTrack.innerHTML = '';
-        originalOrder.forEach(item => {
-            photoTrack.appendChild(item);
-            
-            const cat = item.getAttribute('data-category');
-            if (filter === 'all' || cat === filter) {
-                item.classList.remove('filter-hidden');
-            } else {
-                item.classList.add('filter-hidden');
-            }
-        });
-        
-        photoTrack.style.transition = 'none';
-        photoTrack.style.transform = `translateX(0px)`;
-        
-        visibleItems = originalOrder.filter(item => !item.classList.contains('filter-hidden'));
-        updateSliderCenter(0);
-        startAutoSlide();
-    });
-});
-
-// Init
-updateSliderCenter(0);
-startAutoSlide();
-
-const sliderContainer = document.querySelector('.photo-slider');
-if (sliderContainer) {
-    sliderContainer.addEventListener('mouseenter', stopAutoSlide);
-    sliderContainer.addEventListener('mouseleave', startAutoSlide);
-}
+        requestAnimationFrame(lerpParallax);
+    }
+    lerpParallax();
+})();
 
 // ===== LIGHTBOX =====
 const lightbox = document.getElementById('lightbox');
@@ -312,9 +220,9 @@ const lbNext = document.getElementById('lb-next');
 let lbImages = [];
 let lbIndex = 0;
 
-document.querySelectorAll('.gallery-item:not(.gallery-add):not(.video-item)').forEach((item, i) => {
+document.querySelectorAll('.graphic-card').forEach((item, i) => {
     const img = item.querySelector('img');
-    const cap = item.querySelector('.gallery-caption span:first-child');
+    const cap = item.querySelector('.graphic-title');
     if (img) {
         lbImages.push({ src: img.src, caption: cap ? cap.textContent : '' });
     }
@@ -355,17 +263,34 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ===== SMOOTH SCROLL =====
+function smoothScrollTo(targetY, duration = 1000) {
+    const startY = window.scrollY;
+    const diff = targetY - startY;
+    let start = null;
+
+    function easeOutExpo(t) {
+        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    }
+
+    function step(timestamp) {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const easedProgress = easeOutExpo(progress);
+        window.scrollTo(0, startY + diff * easedProgress);
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        }
+    }
+    requestAnimationFrame(step);
+}
+
 document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', (e) => {
         e.preventDefault();
         const target = document.querySelector(a.getAttribute('href'));
         if (target) {
-            window.scrollTo({
-                top: target.offsetTop - nav.offsetHeight - 16,
-                behavior: 'smooth'
-            });
+            const targetY = target.offsetTop - nav.offsetHeight - 16;
+            smoothScrollTo(targetY, 1200);
         }
     });
 });
-
-
