@@ -4,21 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stephan Viray — Creative Portfolio</title>
+    <title>Stephan Viray — 3D Creative Portfolio</title>
     <meta name="description"
-        content="Stephan F. Viray — Video Editor and Graphic Designer. Portfolio showcasing video production, visual storytelling, and graphic design work.">
+        content="Stephan F. Viray — Video Editor and Graphic Designer. Immersive 3D portfolio showcasing video production, visual storytelling, and graphic design work.">
     <meta name="author" content="Stephan F. Viray">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#000000">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+
+    <!-- ===== 3D CANVAS (persistent background) ===== -->
+    <canvas id="scene3d"></canvas>
 
     <!-- ===== CUSTOM CURSOR ===== -->
     <div class="cursor-dot" id="cursor-dot"></div>
@@ -32,12 +35,13 @@
             <div class="loader-bar">
                 <div class="loader-fill" id="loader-fill"></div>
             </div>
+            <span class="loader-subtitle">ENTERING 3D SPACE</span>
         </div>
     </div>
 
     <!-- ===== NAV ===== -->
     <nav class="nav" id="nav">
-        <a href="#hero" class="nav-brand" id="nav-brand" data-magnetic>S<em>V</em></a>
+        <a href="#hero" class="nav-brand" id="nav-brand" data-magnetic data-tilt>S<em>V</em></a>
         <div class="nav-links" id="nav-links">
             <a href="#about" class="nav-link" data-magnetic>About</a>
             <a href="#experience" class="nav-link" data-magnetic>Experience</a>
@@ -52,27 +56,31 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
-        <canvas id="hero-canvas"></canvas>
-        <div class="hero-noise"></div>
-        <div class="hero-content">
+        <div class="hero-depth-layer hero-depth-back"></div>
+        <div class="hero-depth-layer hero-depth-mid"></div>
+        <div class="hero-content" id="hero-content">
             <div class="hero-label anim-reveal" data-delay="0.3">
                 <span class="hero-label-line"></span>
                 Video Editor & Graphic Designer
                 <span class="hero-label-line"></span>
             </div>
-            <h1 class="hero-name">
-                <span class="hero-line anim-reveal" data-delay="0.5">Crafting visual</span>
-                <span class="hero-line anim-reveal" data-delay="0.7">stories that <em>resonate</em></span>
+            <h1 class="hero-name" id="hero-title">
+                <span class="hero-line anim-reveal" data-delay="0.5">
+                    <span class="hero-char-wrap">Crafting visual</span>
+                </span>
+                <span class="hero-line anim-reveal" data-delay="0.7">
+                    <span class="hero-char-wrap">stories that <em>resonate</em></span>
+                </span>
             </h1>
             <p class="hero-tagline anim-reveal" data-delay="0.9">
                 Bringing ideas to life through motion, color, and design.
             </p>
             <div class="hero-cta anim-reveal" data-delay="1.1">
-                <a href="#videos" class="btn btn-glow" id="cta-work" data-magnetic>
+                <a href="#videos" class="btn btn-glow" id="cta-work" data-magnetic data-tilt>
                     <span>Explore My Work</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
                 </a>
-                <a href="#contact" class="btn btn-outline" id="cta-contact" data-magnetic>
+                <a href="#contact" class="btn btn-outline" id="cta-contact" data-magnetic data-tilt>
                     <span>Get in Touch</span>
                 </a>
             </div>
@@ -81,7 +89,7 @@
             <div class="scroll-mouse">
                 <div class="scroll-wheel"></div>
             </div>
-            <span class="scroll-text">Scroll</span>
+            <span class="scroll-text">Scroll to Explore</span>
         </div>
     </section>
 
@@ -106,7 +114,7 @@
     </div>
 
     <!-- ===== ABOUT ===== -->
-    <section class="section section-dark" id="about">
+    <section class="section" id="about">
         <div class="container">
             <div class="section-label reveal">
                 <span class="label-index">01</span>
@@ -133,15 +141,15 @@
                 </div>
                 <div class="col-right reveal-right">
                     <div class="about-details">
-                        <div class="detail-item">
+                        <div class="detail-item" data-tilt>
                             <span class="detail-label">Education</span>
                             <span class="detail-value">BS Information Technology<br><span class="text-muted">USTP — 2022–2026</span></span>
                         </div>
-                        <div class="detail-item">
+                        <div class="detail-item" data-tilt>
                             <span class="detail-label">Location</span>
                             <span class="detail-value">Cagayan de Oro City<br><span class="text-muted">Philippines</span></span>
                         </div>
-                        <div class="detail-item">
+                        <div class="detail-item" data-tilt>
                             <span class="detail-label">Email</span>
                             <span class="detail-value">stephanviray50@gmail.com</span>
                         </div>
@@ -152,7 +160,7 @@
     </section>
 
     <!-- ===== SKILLS ===== -->
-    <section class="section section-warm" id="skills">
+    <section class="section" id="skills">
         <div class="container">
             <div class="section-label reveal">
                 <span class="label-index">02</span>
@@ -161,7 +169,7 @@
             </div>
             <h2 class="heading-xl reveal" style="margin-bottom: 80px;">Tools & <em>Technologies</em></h2>
             <div class="skills-layout reveal">
-                <div class="skill-group">
+                <div class="skill-group" data-tilt>
                     <h4 class="skill-group-title">Design & Video</h4>
                     <div class="skill-tags">
                         <span class="skill-tag" data-magnetic>Adobe Premiere Pro</span>
@@ -171,7 +179,7 @@
                         <span class="skill-tag" data-magnetic>CapCut</span>
                     </div>
                 </div>
-                <div class="skill-group">
+                <div class="skill-group" data-tilt>
                     <h4 class="skill-group-title">Technical & Tools</h4>
                     <div class="skill-tags">
                         <span class="skill-tag" data-magnetic>Canva</span>
@@ -181,7 +189,7 @@
                         <span class="skill-tag" data-magnetic>SketchUp</span>
                     </div>
                 </div>
-                <div class="skill-group">
+                <div class="skill-group" data-tilt>
                     <h4 class="skill-group-title">AI Tools</h4>
                     <div class="skill-tags">
                         <span class="skill-tag" data-magnetic>ChatGPT</span>
@@ -191,7 +199,7 @@
                         <span class="skill-tag" data-magnetic>Topaz Video AI</span>
                     </div>
                 </div>
-                <div class="skill-group">
+                <div class="skill-group" data-tilt>
                     <h4 class="skill-group-title">Soft Skills</h4>
                     <div class="skill-tags">
                         <span class="skill-tag" data-magnetic>Visual Storytelling</span>
@@ -206,7 +214,7 @@
     </section>
 
     <!-- ===== EXPERIENCE ===== -->
-    <section class="section section-dark" id="experience">
+    <section class="section" id="experience">
         <div class="container">
             <div class="section-label reveal">
                 <span class="label-index">03</span>
@@ -216,7 +224,7 @@
             <h2 class="heading-xl reveal" style="margin-bottom: 80px;">Professional <em>Background</em></h2>
             <div class="experience-list">
 
-                <div class="exp-item reveal" id="exp-freelance">
+                <div class="exp-item reveal" id="exp-freelance" data-tilt>
                     <div class="exp-left">
                         <span class="exp-duration">1+ Years</span>
                         <span class="exp-type">Freelance</span>
@@ -232,7 +240,7 @@
                     </div>
                 </div>
 
-                <div class="exp-item reveal" id="exp-remotasks">
+                <div class="exp-item reveal" id="exp-remotasks" data-tilt>
                     <div class="exp-left">
                         <span class="exp-duration">2+ Years</span>
                         <span class="exp-type">Remote</span>
@@ -248,7 +256,7 @@
                     </div>
                 </div>
 
-                <div class="exp-item reveal" id="exp-mabang">
+                <div class="exp-item reveal" id="exp-mabang" data-tilt>
                     <div class="exp-left">
                         <span class="exp-duration">1 Year</span>
                         <span class="exp-type">Work From Home</span>
@@ -269,7 +277,7 @@
     </section>
 
     <!-- ===== VIDEOS ===== -->
-    <section class="section section-warm" id="videos">
+    <section class="section" id="videos">
         <div class="container">
             <div class="section-label reveal">
                 <span class="label-index">04</span>
@@ -279,7 +287,7 @@
             <h2 class="heading-xl reveal" style="margin-bottom: 80px;">Selected <em>Videos</em></h2>
 
             <div class="video-grid" id="gallery-videos">
-                <div class="video-card reveal-scale" id="vid-1">
+                <div class="video-card reveal-scale" id="vid-1" data-tilt>
                     <div class="video-wrapper">
                         <video controls preload="metadata">
                             <source src="VIDEO/3d print.mp4" type="video/mp4">
@@ -290,7 +298,7 @@
                         <h3 class="video-title">3D Print</h3>
                     </div>
                 </div>
-                <div class="video-card reveal-scale" id="vid-2">
+                <div class="video-card reveal-scale" id="vid-2" data-tilt>
                     <div class="video-wrapper">
                         <video controls preload="metadata">
                             <source src="VIDEO/DIBUJO MONTAGE_2.mp4" type="video/mp4">
@@ -301,7 +309,7 @@
                         <h3 class="video-title">Dibujo Montage</h3>
                     </div>
                 </div>
-                <div class="video-card reveal-scale" id="vid-3">
+                <div class="video-card reveal-scale" id="vid-3" data-tilt>
                     <div class="video-wrapper">
                         <video controls preload="metadata">
                             <source src="VIDEO/tshirt brand.mp4" type="video/mp4">
@@ -317,7 +325,7 @@
     </section>
 
     <!-- ===== GRAPHICS ===== -->
-    <section class="section section-dark" id="graphics">
+    <section class="section" id="graphics">
         <div class="container">
             <div class="section-label reveal">
                 <span class="label-index">05</span>
@@ -327,7 +335,7 @@
             <h2 class="heading-xl reveal" style="margin-bottom: 80px;">Design <em>Portfolio</em></h2>
 
             <div class="graphics-grid">
-                <div class="graphic-card reveal-scale" id="gallery-3">
+                <div class="graphic-card reveal-scale" id="gallery-3" data-tilt>
                     <div class="graphic-img">
                         <img src="PHOTO/graphics1.jpg" alt="Graphics Work 1" loading="lazy">
                     </div>
@@ -337,7 +345,7 @@
                         <span class="graphic-view">View Project →</span>
                     </div>
                 </div>
-                <div class="graphic-card reveal-scale" id="gallery-4">
+                <div class="graphic-card reveal-scale" id="gallery-4" data-tilt>
                     <div class="graphic-img">
                         <img src="PHOTO/graphics2.jpg" alt="Graphics Work 2" loading="lazy">
                     </div>
@@ -347,7 +355,7 @@
                         <span class="graphic-view">View Project →</span>
                     </div>
                 </div>
-                <div class="graphic-card reveal-scale" id="gallery-5">
+                <div class="graphic-card reveal-scale" id="gallery-5" data-tilt>
                     <div class="graphic-img">
                         <img src="PHOTO/graphics3.jpg" alt="Graphics Work 3" loading="lazy">
                     </div>
@@ -357,7 +365,7 @@
                         <span class="graphic-view">View Project →</span>
                     </div>
                 </div>
-                <div class="graphic-card reveal-scale" id="gallery-6">
+                <div class="graphic-card reveal-scale" id="gallery-6" data-tilt>
                     <div class="graphic-img">
                         <img src="PHOTO/graphics4.jpg" alt="Graphics Work 4" loading="lazy">
                     </div>
@@ -387,7 +395,7 @@
     </div>
 
     <!-- ===== CONTACT ===== -->
-    <section class="section section-dark" id="contact">
+    <section class="section" id="contact">
         <div class="container">
             <div class="section-label reveal">
                 <span class="label-index">06</span>
@@ -400,22 +408,22 @@
                     <p class="body-text" style="margin-top: 24px; margin-bottom: 48px;">
                         Have a project in mind, want to collaborate, or just want to say hello? Feel free to reach out.
                     </p>
-                    <a href="mailto:stephanviray50@gmail.com" class="btn btn-glow" data-magnetic>
+                    <a href="mailto:stephanviray50@gmail.com" class="btn btn-glow" data-magnetic data-tilt>
                         <span>Send an Email</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
                     </a>
                 </div>
                 <div class="contact-right reveal">
                     <div class="contact-info-list">
-                        <div class="contact-row">
+                        <div class="contact-row" data-tilt>
                             <span class="contact-label">Email</span>
                             <a href="mailto:stephanviray50@gmail.com" class="contact-value">stephanviray50@gmail.com</a>
                         </div>
-                        <div class="contact-row">
+                        <div class="contact-row" data-tilt>
                             <span class="contact-label">Phone</span>
                             <a href="tel:+639391018450" class="contact-value">0939 101 8450</a>
                         </div>
-                        <div class="contact-row">
+                        <div class="contact-row" data-tilt>
                             <span class="contact-label">Location</span>
                             <span class="contact-value">Cagayan de Oro City, Philippines</span>
                         </div>
