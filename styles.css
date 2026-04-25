@@ -226,13 +226,53 @@ a.contact-value:hover { color:var(--accent); }
 /* 3D TILT on cards */
 [data-tilt] { transform-style:preserve-3d; transition: transform .3s var(--ease); }
 
-/* RESPONSIVE */
+/* VIGNETTE — kills blue edge bleed from 3D canvas */
+body::after { content:''; position:fixed; inset:0; z-index:0; pointer-events:none; box-shadow: inset 0 0 150px 80px rgba(10,8,6,1); }
+
+/* RESPONSIVE — TABLET */
+@media (max-width:1024px) {
+    .container { padding:0 32px; }
+    .two-col { gap:60px; }
+    .contact-layout { gap:48px; }
+    .exp-item { grid-template-columns:180px 1fr; gap:32px; }
+}
+
+/* RESPONSIVE — MOBILE */
 @media (max-width:600px) {
-    :root { --section-py:100px; }
-    .container { padding:0 24px; }
-    .hero-name { letter-spacing:-2px; }
+    :root { --section-py:80px; }
+    .container { padding:0 20px; }
+    .hero-name { font-size:clamp(2.2rem,10vw,3.5rem); letter-spacing:-2px; }
+    .hero-tagline { font-size:1rem; }
+    .hero-label { font-size:.65rem; letter-spacing:3px; gap:10px; }
+    .hero-label-line { width:24px; }
     .hero-cta { flex-direction:column; align-items:center; }
-    .video-grid { grid-template-columns:1fr; }
+    .hero-cta .btn { width:100%; justify-content:center; padding:14px 28px; }
+    .heading-xl { font-size:clamp(1.8rem,7vw,2.8rem); letter-spacing:-1px; }
+    .body-text { font-size:.95rem; }
+    .section-label { margin-bottom:32px; }
+    .about-hero { margin-bottom:48px; }
+    .two-col { grid-template-columns:1fr; gap:40px; }
+    .skills-layout { grid-template-columns:1fr; gap:16px; }
+    .skill-group { padding:24px; }
+    .skill-tag { padding:8px 16px; font-size:.8rem; }
+    .exp-item { grid-template-columns:1fr; gap:12px; padding:24px 20px; }
+    .exp-left { flex-direction:row; gap:12px; align-items:center; }
+    .exp-title { font-size:1.1rem; }
+    .video-grid { grid-template-columns:1fr; gap:20px; }
+    .graphics-grid { grid-template-columns:1fr; gap:16px; }
+    .contact-layout { grid-template-columns:1fr; gap:36px; }
+    .contact-row { padding:16px 20px; }
+    .detail-item { padding:16px 20px; gap:20px; }
+    .footer-inner { flex-direction:column; gap:12px; text-align:center; }
+    .scroll-cue { bottom:24px; }
+    .marquee-content span { font-size:.7rem; letter-spacing:2px; }
+    /* Disable 3D tilt on mobile — no mouse hover */
+    [data-tilt] { transform:none!important; }
+}
+
+/* TOUCH DEVICES — disable custom cursor + 3D tilt */
+@media (pointer:coarse) {
+    [data-tilt] { transform:none!important; }
 }
 
 /* REDUCED MOTION */

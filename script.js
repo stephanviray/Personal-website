@@ -46,11 +46,12 @@ function init3DScene() {
     const canvas = document.getElementById('scene3d');
     if (!canvas || typeof THREE === 'undefined') return;
 
+    const isMobile = window.innerWidth < 768;
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, alpha: false });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
     renderer.setClearColor(0x000000, 1);
 
     // ── GENERATE STAR TEXTURE (procedural, circular glow) ──
@@ -100,7 +101,7 @@ function init3DScene() {
     const starTexGold = createStarTexture(64, 212, 165, 116);
 
     // ── BACKGROUND STAR FIELD (thousands of tiny stars) ──
-    const bgStarCount = 2000;
+    const bgStarCount = isMobile ? 800 : 2000;
     const bgGeo = new THREE.BufferGeometry();
     const bgPos = new Float32Array(bgStarCount * 3);
     const bgSizes = new Float32Array(bgStarCount);
@@ -158,7 +159,7 @@ function init3DScene() {
         }
     `;
 
-    const gCount = 6000;
+    const gCount = isMobile ? 2500 : 6000;
     const gGeo = new THREE.BufferGeometry();
     const gPositions = new Float32Array(gCount * 3);
     const gColors = new Float32Array(gCount * 3);
