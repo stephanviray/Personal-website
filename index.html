@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Computer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="boot">
+    <div class="logo"><span class="a">Stephan</span><span class="b">XP</span></div>
+    <div class="tag">CREATIVE PROFESSIONAL EDITION</div>
+    <div class="barwrap">
+      <div class="seg"></div>
+    </div>
+  </div>
+
+  <div id="desktop">
+    <div class="moon"></div>
+    <div class="ridge ridge1"></div>
+    <div class="ridge ridge2"></div>
+    <div class="ridge ridge3"></div>
+    <div id="icons"></div>
+  </div>
+
+  <div id="start-menu">
+    <div class="sm-header">
+      <div class="sm-avatar">S</div><span>Stephan</span>
+    </div>
+    <div class="sm-body">
+      <div class="sm-left" id="sm-left"></div>
+      <div class="sm-right">
+        <div class="sm-item" data-open="about"><span class="ic" style="background:#c6ff5e"></span> About Me</div>
+        <div class="sm-item" data-open="contact"><span class="ic" style="background:#f5a35c"></span> Contact</div>
+        <a class="sm-item" href="#" target="_blank" rel="noopener"><span class="ic" style="background:#7ea8ff"></span>
+          Live Portfolio</a>
+      </div>
+    </div>
+    <div class="sm-foot"><button id="shutdown-btn">Turn Off Computer</button></div>
+  </div>
+
+  <div id="taskbar">
+    <div id="start-btn">
+      <svg class="flag" viewBox="0 0 20 20">
+        <rect x="1" y="1" width="8" height="8" fill="#ff5c33" />
+        <rect x="11" y="1" width="8" height="8" fill="#7ed83a" />
+        <rect x="1" y="11" width="8" height="8" fill="#3a9eff" />
+        <rect x="11" y="11" width="8" height="8" fill="#ffd23a" />
+      </svg>
+      <span>start</span>
+    </div>
+    <div class="task-sep"></div>
+    <div id="open-windows"></div>
+    <div id="tray">🔊 <span id="clock">00:00</span></div>
+  </div>
+
+  <script>
+    // Hierarchy definition representing the newly organized files on disk
+    const FS = {
+      name: "WEB DESIGN PORTFOLIO",
+      type: "dir",
+      children: {
+        "PHOTO": {
+          name: "PHOTO",
+          type: "dir",
+          color: "#f5d97a",
+          children: {
+            "DTC_Ads": {
+              name: "DTC Brand Ads",
+              type: "dir",
+              color: "#ff9d8a",
+              children: {
+                "Pura_Vida": {
+                  name: "Pura Vida Moringa",
+                  type: "dir",
+                  color: "#c6ff5e",
+                  children: {
+                    "Ad 1.webp": { name: "Power from the Volcano", file: "Ad 1.webp", img: "PHOTO/DTC_Ads/Pura_Vida/Ad 1.webp", type: "image", category: "dtc", color: "#c6ff5e", niche: "Health & Wellness", platform: "Meta Ads (FB/IG Feed)", size: "1.7 MB", tools: "Photoshop, Midjourney", strategy: "Leveraging organic volcanic imagery to establish premium ingredient quality and immediate visual impact for nutritional supplement advertising." },
+                    "Ad 2.webp": { name: "Natural Energy - No Crash", file: "Ad 2.webp", img: "PHOTO/DTC_Ads/Pura_Vida/Ad 2.webp", type: "image", category: "dtc", color: "#c6ff5e", niche: "Health & Wellness", platform: "Meta Ads (FB/IG Feed)", size: "1.6 MB", tools: "Photoshop, Lightroom", strategy: "Highlighting lifestyle benefits with a split-screen design. Contrasts the clean product packaging with natural outdoor energy to drive high CTR." },
+                    "Ad 3.webp": { name: "100% Hand-Peeled Purity", file: "Ad 3.webp", img: "PHOTO/DTC_Ads/Pura_Vida/Ad 3.webp", type: "image", category: "dtc", color: "#c6ff5e", niche: "Health & Wellness", platform: "Meta Ads (FB/IG Feed)", size: "1.3 MB", tools: "Photoshop", strategy: "Focusing on USP (Unique Selling Proposition) icons. Showcases minimal clean layout to appeal to ingredient-conscious buyers." },
+                    "Ad 4.webp": { name: "Nature's Ultimate Superfood", file: "Ad 4.webp", img: "PHOTO/DTC_Ads/Pura_Vida/Ad 4.webp", type: "image", category: "dtc", color: "#c6ff5e", niche: "Health & Wellness", platform: "Meta Ads (FB/IG Feed)", size: "1.4 MB", tools: "Photoshop", strategy: "Detailed nutritional grid showcasing vitamins and minerals. Built as a high-intent educational static ad for mid-funnel targeting." },
+                    "Ad 5.webp": { name: "Move Freely - Live Fully", file: "Ad 5.webp", img: "PHOTO/DTC_Ads/Pura_Vida/Ad 5.webp", type: "image", category: "dtc", color: "#c6ff5e", niche: "Health & Wellness", platform: "Meta Ads (FB/IG Feed)", size: "1.8 MB", tools: "Photoshop", strategy: "Emotional dynamic action shot to drive aspiration. Showcases joint comfort and physical freedom, matching the brand tone." }
+                  }
+                },
+                "Stakt_Fitness": {
+                  name: "Stakt Fitness Mat",
+                  type: "dir",
+                  color: "#7ea8ff",
+                  children: {
+                    "Stakt.webp": { name: "The Mat That Fits Your Space", file: "Stakt.webp", img: "PHOTO/DTC_Ads/Stakt_Fitness/Stakt.webp", type: "image", category: "dtc", color: "#7ea8ff", niche: "Fitness & Home", platform: "Pinterest / Meta Ads", size: "6.4 MB", tools: "Photoshop, Blender", strategy: "Clean interior mockup emphasizing space-saving design and high-end aesthetic integration for premium yoga/workout equipment." },
+                    "STRAKT MAT V1.webp": { name: "Stakt Foldable Layout V1", file: "STRAKT MAT V1.webp", img: "PHOTO/DTC_Ads/Stakt_Fitness/STRAKT MAT V1.webp", type: "image", category: "dtc", color: "#7ea8ff", niche: "Fitness & Home", platform: "Meta Ads / Story", size: "7.1 MB", tools: "Photoshop", strategy: "Product spec grid outlining the unique folding mechanism and material benefits compared to traditional rolled mats." },
+                    "STRAKT MAT V2.webp": { name: "Stakt Foldable Layout V2", file: "STRAKT MAT V2.webp", img: "PHOTO/DTC_Ads/Stakt_Fitness/STRAKT MAT V2.webp", type: "image", category: "dtc", color: "#7ea8ff", niche: "Fitness & Home", platform: "Meta Ads / Story", size: "6.7 MB", tools: "Photoshop", strategy: "Alternate variant of product spec grid, focusing on structural angles and lifestyle integration." },
+                    "V1.webp": { name: "Stakt Roller Spec", file: "V1.webp", img: "PHOTO/DTC_Ads/Stakt_Fitness/V1.webp", type: "image", category: "dtc", color: "#7ea8ff", niche: "Fitness & Home", platform: "Meta Ads", size: "2.0 MB", tools: "Photoshop", strategy: "Spec sheet for foam roller accessory, focusing on technical dimensions and ease-of-use statistics." },
+                    "V2.webp": { name: "Movement Elevated", file: "V2.webp", img: "PHOTO/DTC_Ads/Stakt_Fitness/V2.webp", type: "image", category: "dtc", color: "#7ea8ff", niche: "Fitness & Home", platform: "Meta Ads / Instagram", size: "5.6 MB", tools: "Photoshop, Midjourney", strategy: "Minimalist studio shot showcasing product texture on natural stone blocks. Targets upscale wellness consumers." },
+                    "V3.webp": { name: "Stakt Roller Studio V3", file: "V3.webp", img: "PHOTO/DTC_Ads/Stakt_Fitness/V3.webp", type: "image", category: "dtc", color: "#7ea8ff", niche: "Fitness & Home", platform: "Meta Ads", size: "5.6 MB", tools: "Photoshop", strategy: "Alternative colorway presentation for the Stakt roller line, highlighting design variations." }
+                  }
+                },
+                "Colitt_Fishing": {
+                  name: "Colitt Kids Fishing",
+                  type: "dir",
+                  color: "#5cc9e8",
+                  children: {
+                    "COLITT PRODUCT.webp": { name: "Launch. Splash. Catch!", file: "COLITT PRODUCT.webp", img: "PHOTO/DTC_Ads/Colitt_Fishing/COLITT PRODUCT.webp", type: "image", category: "dtc", color: "#5cc9e8", niche: "Toys & Outdoors", platform: "Amazon / Meta Ads", size: "1.7 MB", tools: "Photoshop", strategy: "Bright, high-action design for kid's slingshot fishing rod. Uses bold typography and splash elements to trigger impulse parental buys." },
+                    "COLITT-VIRAY.webp": { name: "Packaging Box Design", file: "COLITT-VIRAY.webp", img: "PHOTO/DTC_Ads/Colitt_Fishing/COLITT-VIRAY.webp", type: "image", category: "dtc", color: "#5cc9e8", niche: "Toys & Packaging", platform: "Product Print/Packaging", size: "1.9 MB", tools: "Photoshop, Illustrator", strategy: "Full graphic layout for the retail box packaging. Features underwater imagery, bright product highlight, and 6+ age branding." }
+                  }
+                },
+                "Protein_Brands": {
+                  name: "Whey Protein Brands",
+                  type: "dir",
+                  color: "#b48cff",
+                  children: {
+                    "Athlene.webp": { name: "Athlene Active Whey", file: "Athlene.webp", img: "PHOTO/DTC_Ads/Protein_Brands/Athlene.webp", type: "image", category: "dtc", color: "#b48cff", niche: "Sports Nutrition", platform: "Meta Ads / Ecom", size: "3.5 MB", tools: "Photoshop, Blender", strategy: "Modern geometric dark theme highlighting the sleek blue packaging and digital sales channel badge icons (Shopee, Lazada, TikTok Shop)." },
+                    "WHEY.webp": { name: "Nutravie Premium Whey", file: "WHEY.webp", img: "PHOTO/DTC_Ads/Protein_Brands/WHEY.webp", type: "image", category: "dtc", color: "#b48cff", niche: "Sports Nutrition", platform: "Meta Ads / Instagram", size: "3.1 MB", tools: "Photoshop, Midjourney", strategy: "Rich, textured product shot showcasing clean formula, chocolate flavor cue, and US manufacturing trust badges." }
+                  }
+                },
+                "Kopiko": {
+                  name: "Kopiko Lucky Day",
+                  type: "dir",
+                  color: "#e8a35c",
+                  children: {
+                    "kopiko lucky day.webp": { name: "Stay Sharp - Stay Energized", file: "kopiko lucky day.webp", img: "PHOTO/DTC_Ads/Kopiko/kopiko lucky day.webp", type: "image", category: "dtc", color: "#e8a35c", niche: "F&B / Ready-to-Drink Coffee", platform: "Social Media Banner", size: "6.5 MB", tools: "Photoshop, Liquid Simulation", strategy: "Dynamic splash poster using complex coffee liquid assets and high-contrast typography to emphasize energy, taste, and premium bottle design." }
+                  }
+                },
+                "Utokia": {
+                  name: "Utokia Sleep Gummies",
+                  type: "dir",
+                  color: "#8ce8b0",
+                  children: {
+                    "utokia.webp": { name: "Utokia Nighttime Sleep", file: "utokia.webp", img: "PHOTO/DTC_Ads/Utokia/utokia.webp", type: "image", category: "dtc", color: "#8ce8b0", niche: "Health & Supplements", platform: "Meta Ads / Instagram", size: "1.8 MB", tools: "Photoshop, Midjourney", strategy: "Emotional hook ('Sleep like the kids are at Grandma's') combined with cozy bedtime lighting, highlighting zero melatonin USP." }
+                  }
+                },
+                "Pest_Proof": {
+                  name: "Pest Proof Co",
+                  type: "dir",
+                  color: "#5cc9e8",
+                  children: {
+                    "PEST PROOF.webp": { name: "BiteLure Yard Traps", file: "PEST PROOF.webp", img: "PHOTO/DTC_Ads/Pest_Proof/PEST PROOF.webp", type: "image", category: "dtc", color: "#5cc9e8", niche: "Home & Garden", platform: "Meta Ads / Ecom", size: "5.4 MB", tools: "Photoshop, 3D Rendering", strategy: "Problem-solving hook ('Did you spray the whole yard?') comparing $49 trap vs $400 professional service. Visualizes high-end diorama garden scene." }
+                  }
+                },
+                "Monster_Truck": {
+                  name: "Monster Truck Toy",
+                  type: "dir",
+                  color: "#ff7a9d",
+                  children: {
+                    "rc.webp": { name: "Built to Dominant", file: "rc.webp", img: "PHOTO/DTC_Ads/Monster_Truck/rc.webp", type: "image", category: "dtc", color: "#ff7a9d", niche: "Toys & Hobbies", platform: "Web Banner / Poster", size: "1.8 MB", tools: "Photoshop, Matte Painting", strategy: "High-adrenaline action composition. Composite of a blue RC monster truck launching off rugged rocks under storm clouds to denote high durability." },
+                    "rc screenshot.webp": { name: "Monster Truck PSD Walkthrough", file: "rc screenshot.webp", img: "PHOTO/DTC_Ads/Monster_Truck/rc screenshot.webp", type: "image", category: "dtc", color: "#ff7a9d", niche: "Graphic Design Process", platform: "Portfolio Verification", size: "675 KB", tools: "Photoshop UI", strategy: "Photoshop workspace screenshot proving file complexity, layered compositions, masking, and matte painting workflow." }
+                  }
+                }
+              }
+            },
+            "Technical_and_Explainers": {
+              name: "Technical & Explainers",
+              type: "dir",
+              color: "#7ea8ff",
+              children: {
+                "Uncoupling_Membrane": {
+                  name: "Uncoupling Membrane",
+                  type: "dir",
+                  color: "#7ea8ff",
+                  children: {
+                    "uncoupling design.webp": { name: "Substrate Movement Prevention", file: "uncoupling design.webp", img: "PHOTO/Technical_and_Explainers/Uncoupling_Membrane/uncoupling design.webp", type: "image", category: "tech", color: "#7ea8ff", niche: "Home Renovation", platform: "E-Commerce Product Listing", size: "5.5 MB", tools: "Photoshop, 3D Modeling", strategy: "Technical explainer showcasing multiple product views (Top, Front, Side) to describe anti-crack waterproofing features." },
+                    "Tile 1.webp": { name: "Tile Installation Guide V1", file: "Tile 1.webp", img: "PHOTO/Technical_and_Explainers/Uncoupling_Membrane/Tile 1.webp", type: "image", category: "tech", color: "#7ea8ff", niche: "Construction / DIY", platform: "Amazon Listing Graphic", size: "5.5 MB", tools: "Photoshop", strategy: "Detailed infographic showing five clear steps of applying thinset mortar, placing the membrane, and laying tiles." },
+                    "Tile 2.webp": { name: "Tile Installation Guide V2", file: "Tile 2.webp", img: "PHOTO/Technical_and_Explainers/Uncoupling_Membrane/Tile 2.webp", type: "image", category: "tech", color: "#7ea8ff", niche: "Construction / DIY", platform: "Amazon Listing Graphic", size: "6.5 MB", tools: "Photoshop", strategy: "Updated variant of infographic layout with expanded technical dimensions (16.5ft length, 3.3ft width, 1/8in thickness)." },
+                    "Tile 3.webp": { name: "Tile Installation Guide V3", file: "Tile 3.webp", img: "PHOTO/Technical_and_Explainers/Uncoupling_Membrane/Tile 3.webp", type: "image", category: "tech", color: "#7ea8ff", niche: "Construction / DIY", platform: "Amazon Listing Graphic", size: "5.6 MB", tools: "Photoshop", strategy: "Final iteration of spec layout, optimizing readability of measurement callouts and user safety guidelines." }
+                  }
+                },
+                "Workspace_Claude": {
+                  name: "Workspace & Claude",
+                  type: "dir",
+                  color: "#c6ff5e",
+                  children: {
+                    "Code with Claude.webp": { name: "Code with Claude Banner", file: "Code with Claude.webp", img: "PHOTO/Technical_and_Explainers/Workspace_Claude/Code with Claude.webp", type: "image", category: "tech", color: "#c6ff5e", niche: "Software & AI Promotion", platform: "Banner Ad", size: "1.6 MB", tools: "Photoshop, Stable Diffusion", strategy: "A tech banner design showing a coder working alongside abstract floating screens. Clean composition to evoke focused productivity." },
+                    "Code with Claude Screenshot.webp": { name: "Claude PSD Walkthrough", file: "Code with Claude Screenshot.webp", img: "PHOTO/Technical_and_Explainers/Workspace_Claude/Code with Claude Screenshot.webp", type: "image", category: "tech", color: "#c6ff5e", niche: "Graphic Design Process", platform: "Portfolio Verification", size: "951 KB", tools: "Photoshop UI", strategy: "Photoshop workspace layout highlighting vector masking, adjustment layers, text effects, and composite elements." }
+                  }
+                }
+              }
+            },
+            "University_Art": {
+              name: "University Art",
+              type: "dir",
+              color: "#f5a35c",
+              children: {
+                "Dibujo_Exhibits": {
+                  name: "Dibujo Visual Arts",
+                  type: "dir",
+                  color: "#f5a35c",
+                  children: {
+                    "graphics2.webp": { name: "Lakip 2025 Art Exhibit", file: "graphics2.webp", img: "PHOTO/University_Art/Dibujo_Exhibits/graphics2.webp", type: "image", category: "art", color: "#f5a35c", niche: "Fine Arts / Exhibit", platform: "Print Poster / Flyer", size: "826 KB", tools: "Photoshop", strategy: "Promotional poster for 'Lakip 2025' Art Exhibit. Features dynamic light painting trail, dark dramatic smoke, and rustic gold chains." },
+                    "try out.webp": { name: "USTP Dibujo Calendar 2025", file: "try out.webp", img: "PHOTO/University_Art/Dibujo_Exhibits/try out.webp", type: "image", category: "art", color: "#f5a35c", niche: "Fine Arts / Academic", platform: "Print Calendar / Flyer", size: "1.8 MB", tools: "Photoshop", strategy: "June 2025 calendar mockup poster for the university art group, showing registration dates in a dramatic gold-particles theme." },
+                    "try out 2.webp": { name: "Dibujo Tryout Poster", file: "try out 2.webp", img: "PHOTO/University_Art/Dibujo_Exhibits/try out 2.webp", type: "image", category: "art", color: "#f5a35c", niche: "Event Recruitment", platform: "Print Poster", size: "298 KB", tools: "Photoshop, Photography", strategy: "Grungy, high-contrast poster calling for new painters and photographers. Minimalist fonts and collage styling." },
+                    "leo2.webp": { name: "Valedictorian Tribute Poster", file: "leo2.webp", img: "PHOTO/University_Art/Dibujo_Exhibits/leo2.webp", type: "image", category: "art", color: "#f5a35c", niche: "Academic Tribute", platform: "Print Poster / Social", size: "319 KB", tools: "Photoshop, Portrait Editing", strategy: "Clean, elegant valedictorian tribute for Leo Vince Dequina. Uses professional masking, typography, and school branding." }
+                  }
+                },
+                "Yugto_Arts": {
+                  name: "Yugto National Arts Month",
+                  type: "dir",
+                  color: "#f5a35c",
+                  children: {
+                    "Yugto.webp": { name: "National Arts Month Poster", file: "Yugto.webp", img: "PHOTO/University_Art/Yugto_Arts/Yugto.webp", type: "image", category: "art", color: "#f5a35c", niche: "Cultural Exhibit", platform: "Event Poster / Banner", size: "78 KB", tools: "Photoshop", strategy: "Clean black-and-white curve aesthetic showcasing local artists painting. Celebrates 'Ani ng Sining Bayang Malikhain'." }
+                  }
+                }
+              }
+            },
+            "Graphic_Posters": {
+              name: "Graphic Posters",
+              type: "dir",
+              color: "#b48cff",
+              children: {
+                "Interstellar": {
+                  name: "Interstellar Movie Art",
+                  type: "dir",
+                  color: "#b48cff",
+                  children: {
+                    "graphics1.webp": { name: "Interstellar (1964) Art Poster", file: "graphics1.webp", img: "PHOTO/Graphic_Posters/Interstellar/graphics1.webp", type: "image", category: "posters", color: "#b48cff", niche: "Movie Fanart / Minimalist", platform: "Print Poster / Wall Art", size: "687 KB", tools: "Photoshop, Vector textures", strategy: "Retro halftone art poster of an astronaut. Combines high-grain noise filters, minimalist lines, and classic high-serif typography." }
+                  }
+                },
+                "LeBron_GOAT": {
+                  name: "LeBron James Milestone",
+                  type: "dir",
+                  color: "#ff7a9d",
+                  children: {
+                    "graphics3.webp": { name: "LeBron 40K Points Celebration", file: "graphics3.webp", img: "PHOTO/Graphic_Posters/LeBron_GOAT/graphics3.webp", type: "image", category: "posters", color: "#ff7a9d", niche: "Sports Graphic Design", platform: "Social Poster / wallpaper", size: "230 KB", tools: "Photoshop, Photo Manipulation", strategy: "Celebrating 40k points milestone. Incorporates custom texture layering (plastic-wrap background) and masked slam-dunk silhouette." }
+                  }
+                },
+                "One_Piece": {
+                  name: "One Piece Zoro Poster",
+                  type: "dir",
+                  color: "#e8a35c",
+                  children: {
+                    "graphics4.webp": { name: "Roronoa Zoro Swordsman Poster", file: "graphics4.webp", img: "PHOTO/Graphic_Posters/One_Piece/graphics4.webp", type: "image", category: "posters", color: "#e8a35c", niche: "Anime Fanart / Grunge", platform: "Print Poster / merch", size: "702 KB", tools: "Photoshop, Sketching", strategy: "Custom Wanted poster for Zoro. Features layered paper folds, sketch effects, paint splatter masks, and custom Japanese calligraphy fonts." }
+                  }
+                },
+                "Social_Thumbnails": {
+                  name: "Social Media Thumbnails",
+                  type: "dir",
+                  color: "#dfe6f0",
+                  children: {
+                    "Blackhole Thumbnail.webp": { name: "Youtube Space Thumbnail", file: "Blackhole Thumbnail.webp", img: "PHOTO/Graphic_Posters/Social_Thumbnails/Blackhole Thumbnail.webp", type: "image", category: "posters", color: "#dfe6f0", niche: "Social Media Graphic", platform: "YouTube Thumbnail", size: "1.9 MB", tools: "Photoshop, Generative AI", strategy: "Ultra-clickable clickbait design ('JUST DID SOMETHING IMPOSSIBLE') with glowing red blackhole vortex, laser beam, and dynamic pointing arrow." }
+                  }
+                }
+              }
+            },
+            "Robotics_and_Personal": {
+              name: "Robotics & Personal",
+              type: "dir",
+              color: "#dfe6f0",
+              children: {
+                "Robotics": {
+                  name: "Robotics Development",
+                  type: "dir",
+                  color: "#dfe6f0",
+                  children: {
+                    "RC1.webp": { name: "Hardware Workspace", file: "RC1.webp", img: "PHOTO/Robotics_and_Personal/Robotics/RC1.webp", type: "image", category: "personal", color: "#dfe6f0", niche: "Electronics & Robotics", platform: "Personal Documentation", size: "153 KB", tools: "Camera", strategy: "Behind-the-scenes engineering photo. Captures the debugging process of an autonomous RC car with complex circuitry." },
+                    "RC2.webp": { name: "RC Robotic Vehicle Field Test", file: "RC2.webp", img: "PHOTO/Robotics_and_Personal/Robotics/RC2.webp", type: "image", category: "personal", color: "#dfe6f0", niche: "Electronics & Robotics", platform: "Personal Documentation", size: "434 KB", tools: "Camera", strategy: "Field photo of the autonomous vehicle on gravel terrain, showing GPS module, camera rig, and rugged design." }
+                  }
+                },
+                "Personal": {
+                  name: "Personal Milestones",
+                  type: "dir",
+                  color: "#dfe6f0",
+                  children: {
+                    "graduation.webp": { name: "Graduation Portrait", file: "graduation.webp", img: "PHOTO/Robotics_and_Personal/Personal/graduation.webp", type: "image", category: "personal", color: "#dfe6f0", niche: "Personal Milestone", platform: "Family Keepsake", size: "539 KB", tools: "Professional Photography", strategy: "Commencement graduation photo of Stephan Viray, marking academic achievement and professional transition." }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "VIDEO": {
+          name: "VIDEO",
+          type: "dir",
+          color: "#7ea8ff",
+          children: {
+            "3d print.mp4": { name: "3D Printing Process", file: "3d print.mp4", img: "VIDEO/3d print.mp4", type: "video", category: "videos", color: "#7ea8ff", niche: "3D Motion / Prototyping", platform: "Video Showcase", size: "13.3 MB", tools: "Cura, 3D Printer, Premiere", strategy: "Time-lapse video showcasing rapid prototyping and fabrication of customized mechanical components." },
+            "DIBUJO MONTAGE_2.mp4": { name: "Dibujo Montage", file: "DIBUJO MONTAGE_2.mp4", img: "VIDEO/DIBUJO MONTAGE_2.mp4", type: "video", category: "videos", color: "#c6ff5e", niche: "Event Aftermovie / Montage", platform: "Social Video", size: "37.8 MB", tools: "Premiere Pro, After Effects", strategy: "High-energy event montage featuring live painting speed runs, exhibit walk-throughs, and attendee engagement." },
+            "tshirt brand.mp4": { name: "T-Shirt Branding Showcase", file: "tshirt brand.mp4", img: "VIDEO/tshirt brand.mp4", type: "video", category: "videos", color: "#f5a35c", niche: "Apparel Branding", platform: "Promo Reel / TikTok", size: "24.9 MB", tools: "Premiere Pro, After Effects", strategy: "Apparel branding clip utilizing mockup animations and close-up fabric detail reels to launch a street-style design." },
+            "new 1.mp4": { name: "Hobbyist Creative Promo", file: "new 1.mp4", img: "VIDEO/new 1.mp4", type: "video", category: "videos", color: "#b48cff", niche: "Creative Motion Graphics", platform: "Short Form Video", size: "7.9 MB", tools: "After Effects", strategy: "Experimental motion graphics piece utilizing typography animation and dark audio cues to build brand hype." }
+          }
+        },
+        "AboutMe.txt": { name: "About Me", file: "AboutMe.txt", type: "txt", color: "#c6ff5e", initials: "ST", app_id: "about" },
+        "Contact.msg": { name: "Contact", file: "Contact.msg", type: "msg", color: "#f5a35c", initials: "@", app_id: "contact" }
+      }
+    };
+
+    // Flatten all files into a single array for visual showcase gallery
+    const GALLERY_ITEMS = [];
+    function flattenFiles(node) {
+      if (node.type === 'dir') {
+        for (let key in node.children) {
+          flattenFiles(node.children[key]);
+        }
+      } else {
+        if (node.type === 'image' || node.type === 'video') {
+          GALLERY_ITEMS.push(node);
+        }
+      }
+    }
+    flattenFiles(FS);
+
+    // Recursively initialize parents and full path strings
+    function initFS(node, parentPath = "C:\\Users\\viray\\Desktop\\WEB DESIGN PORTFOLIO", parentNode = null) {
+      node.parent = parentNode;
+      if (node.type === 'dir') {
+        node.path = parentNode ? (parentNode.path + "\\" + node.name) : parentPath;
+        for (let key in node.children) {
+          initFS(node.children[key], node.path, node);
+        }
+      } else {
+        node.path = parentNode.path + "\\" + (node.file || node.name);
+      }
+    }
+    initFS(FS);
+
+    // Standard static app data mapping for text/msg files
+    const SYSTEM_APPS = {
+      about: {
+        id: 'about', file: 'AboutMe.txt', img: 'Me/profile step.jpg', name: 'About Me', color: '#c6ff5e', initials: 'ST', sub: 'System Properties',
+        desc: 'Freelance graphic designer specializing in DTC ecommerce static ad creatives for Meta advertising. Based in the Philippines, working across wellness, home, beauty, and sport on ad recreation, original creative strategy, and AI-generated UGC.',
+        tags: ['Performance Creative', 'Meta Ads', 'AI-Assisted UGC']
+      },
+      contact: {
+        id: 'contact', file: 'Contact.msg', name: 'Contact', color: '#f5a35c', initials: '@', sub: 'Outlook Express',
+        desc: 'Available for freelance creative trials, ongoing ad creative production, and DTC performance creative work. Reach out with your brand, product, and what you need tested.',
+        tags: ['Freelance', 'Open to Work']
+      }
+    };
+
+    // Keep dynamic flat array of video records for standard video triggers
+    const VIDEOS = Object.values(FS.children.VIDEO.children).map((video, index) => ({ ...video, id: `video-${index}`, initials: '▶' }));
+
+    let zTop = 10;
+    let galleryIdx = 0;
+    const openMap = {};
+    let currentDir = FS; // Global File Manager Directory Pointer
+
+    /* ---------- Desktop icons ---------- */
+    const iconsEl = document.getElementById('icons');
+    function desktopIcon(label, glyph, color, onOpen) {
+      const el = document.createElement('div');
+      el.className = 'desktop-icon';
+      el.tabIndex = 0;
+      el.innerHTML = `<div class="icon-glyph" style="background:${color}">${glyph}</div><div class="lbl">${label}</div>`;
+      el.addEventListener('click', (e) => {
+        document.querySelectorAll('.desktop-icon.selected').forEach(x => x.classList.remove('selected'));
+        el.classList.add('selected'); e.stopPropagation();
+      });
+      el.addEventListener('dblclick', onOpen);
+      el.addEventListener('keydown', (e) => { if (e.key === 'Enter') onOpen(); });
+      return el;
+    }
+    iconsEl.appendChild(desktopIcon('My Computer', '💻', '#dfe6f0', openExplorer));
+    iconsEl.appendChild(desktopIcon('Video Work', '▶', '#7ea8ff', () => {
+      openExplorer();
+      currentDir = FS.children.VIDEO;
+      if (openMap['explorer']) {
+        const closeBtn = openMap['explorer'].querySelector('.btn-close');
+        closeWindow('explorer');
+      }
+      openExplorer();
+    }));
+    iconsEl.appendChild(desktopIcon('About Me', 'i', SYSTEM_APPS.about.color, () => openInfoViewer(SYSTEM_APPS.about)));
+    iconsEl.appendChild(desktopIcon('Contact', '@', SYSTEM_APPS.contact.color, () => openInfoViewer(SYSTEM_APPS.contact)));
+
+    document.getElementById('desktop').addEventListener('click', () => {
+      document.querySelectorAll('.desktop-icon.selected').forEach(x => x.classList.remove('selected'));
+    });
+
+    /* ---------- Explorer window ("My Computer") — hierarchical folders ---------- */
+    function openExplorer() {
+      if (openMap['explorer']) { bringToFront(openMap['explorer']); return; }
+      const win = document.createElement('div');
+      win.className = 'xp-window';
+      win.id = 'explorer-win';
+      win.style.left = '60px'; win.style.top = '90px'; win.style.zIndex = ++zTop;
+      win.innerHTML = `
+    <div class="title-bar">
+      <div class="title-left"><div class="ti" style="background:#dfe6f0">💻</div><span>My Computer</span></div>
+      <div class="title-buttons"><button class="btn-min">_</button><button class="btn-max">▢</button><button class="btn-close">✕</button></div>
+    </div>
+    <div class="menu-bar"><span>File</span><span>View</span><span>Favorites</span><span>Tools</span><span>Help</span></div>
+    <div class="toolbar">
+      <div class="tbtn btn-back">◀ Back <span class="arrow">▾</span></div>
+      <div class="tbtn">▶</div>
+      <div class="sep"></div>
+      <div class="tbtn">🔍 Search</div>
+      <div class="tbtn">📁 Folders</div>
+    </div>
+    <div class="addr-row">
+      <span class="lab">Address</span>
+      <div class="addr-bar"><span class="fic">📁</span><span id="addr-text">C:\\Users\\viray\\Desktop\\WEB DESIGN PORTFOLIO</span></div>
+      <div class="go-btn">▶ Go</div>
+    </div>
+    <div class="explorer-body">
+      <div class="task-pane">
+        <div class="xp-group" id="tp-default">
+          <div class="xp-group-header"><span>System Tasks</span><span>▾</span></div>
+          <div class="xp-group-body">
+            <div class="tp-item" onclick="openPortfolioGrid()"><span class="di">📂</span> View Gallery Showcase</div>
+            <div class="tp-item" onclick="openInfoViewer(SYSTEM_APPS.about)"><span class="di">ℹ️</span> About Stephan</div>
+            <div class="tp-item" onclick="openInfoViewer(SYSTEM_APPS.contact)"><span class="di">✉️</span> Contact Designer</div>
+          </div>
+        </div>
+        <div class="xp-group" id="tp-details" style="display:none;">
+          <div class="xp-group-header"><span>Selected Item Details</span><span>▾</span></div>
+          <div class="xp-group-body">
+            <div id="detail-preview" style="width:100%; height:90px; margin-bottom:8px; border:1px solid #c8c4ab; border-radius:3px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#fff;"></div>
+            <div id="detail-name" style="font-weight:bold; font-size:11px; color:#1c4a9c; margin-bottom:4px; word-break:break-all;"></div>
+            <div id="detail-meta" style="font-size:9.5px; color:#555; margin-bottom:6px; line-height:1.35;"></div>
+            <div id="detail-strategy" style="font-size:9.5px; color:#333; line-height:1.4; border-top:1px solid #d5e3f5; padding-top:6px; max-height:160px; overflow-y:auto; word-break:break-word;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="file-list" id="file-list"></div>
+    </div>
+    <div class="status-bar" id="explorer-status">0 object(s)</div>
+  `;
+      document.getElementById('desktop').appendChild(win);
+      openMap['explorer'] = win;
+
+      function selectItem(item) {
+        const tpDefault = win.querySelector('#tp-default');
+        const tpDetails = win.querySelector('#tp-details');
+        const detailPreview = win.querySelector('#detail-preview');
+        const detailName = win.querySelector('#detail-name');
+        const detailMeta = win.querySelector('#detail-meta');
+        const detailStrategy = win.querySelector('#detail-strategy');
+        
+        if (!item) {
+          tpDetails.style.display = 'none';
+          tpDefault.style.display = 'block';
+          return;
+        }
+        
+        tpDefault.style.display = 'none';
+        tpDetails.style.display = 'block';
+        detailName.textContent = item.name || item.file;
+        
+        if (item.type === 'dir') {
+          detailPreview.innerHTML = `<span style="font-size: 32px;">📁</span>`;
+          detailPreview.style.background = item.color || '#f5d97a';
+          const numItems = item.children ? Object.keys(item.children).length : 0;
+          detailMeta.innerHTML = `<strong>Type:</strong> Folder<br><strong>Contains:</strong> ${numItems} item(s)`;
+          detailStrategy.innerHTML = `<strong>Folder Details:</strong><br>Double-click to open this folder and explore contents.`;
+        } else if (item.type === 'image') {
+          detailPreview.innerHTML = `<img src="${item.img}" style="width:100%;height:100%;object-fit:cover;">`;
+          detailPreview.style.background = '#fff';
+          detailMeta.innerHTML = `<strong>Niche:</strong> ${item.niche || 'N/A'}<br><strong>Platform:</strong> ${item.platform || 'N/A'}<br><strong>Tools:</strong> ${item.tools || 'N/A'}<br><strong>Size:</strong> ${item.size || 'N/A'}`;
+          detailStrategy.innerHTML = `<strong>Creative Strategy:</strong><br>${item.strategy || 'No commentary available.'}`;
+        } else if (item.type === 'video') {
+          detailPreview.innerHTML = `<span style="font-size: 32px; color: #fff;">🎥</span>`;
+          detailPreview.style.background = item.color || '#7ea8ff';
+          detailMeta.innerHTML = `<strong>Niche:</strong> ${item.niche || 'N/A'}<br><strong>Platform:</strong> ${item.platform || 'N/A'}<br><strong>Tools:</strong> ${item.tools || 'N/A'}<br><strong>Size:</strong> ${item.size || 'N/A'}`;
+          detailStrategy.innerHTML = `<strong>Video Concept:</strong><br>${item.strategy || 'No commentary available.'}`;
+        } else {
+          detailPreview.innerHTML = `<span style="font-size: 32px;">📄</span>`;
+          detailPreview.style.background = item.color || '#ccc';
+          detailMeta.innerHTML = `<strong>Type:</strong> System File<br><strong>File:</strong> ${item.file}`;
+          detailStrategy.innerHTML = `<strong>Details:</strong><br>Double-click to open this file.`;
+        }
+      }
+
+      function renderCurrentDir() {
+        const list = win.querySelector('#file-list');
+        list.innerHTML = '';
+        win.querySelector('#addr-text').textContent = currentDir.path;
+        
+        selectItem(null);
+
+        const backBtn = win.querySelector('.btn-back');
+        if (currentDir.parent) {
+          backBtn.classList.remove('disabled');
+          backBtn.style.opacity = '1';
+          backBtn.style.cursor = 'pointer';
+        } else {
+          backBtn.classList.add('disabled');
+          backBtn.style.opacity = '0.4';
+          backBtn.style.cursor = 'default';
+        }
+
+        const items = currentDir.children;
+        const keys = Object.keys(items || {});
+        win.querySelector('#explorer-status').textContent = `${keys.length} object(s)`;
+
+        keys.forEach(key => {
+          const item = items[key];
+          
+          let thumbHTML = '';
+          if (item.type === 'dir') {
+            thumbHTML = `<div class="fi folder-fi" style="background:${item.color || '#f5d97a'}">📁</div>`;
+          } else if (item.img && (item.type === 'image' || item.type === 'video')) {
+            if (item.type === 'image') {
+              thumbHTML = `<div class="fi" style="background:${item.color || '#ccc'}"><img src="${item.img}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span style="display:none;width:100%;height:100%;align-items:center;justify-content:center;">🖼️</span></div>`;
+            } else {
+              thumbHTML = `<div class="fi video-fi" style="background:${item.color || '#7ea8ff'}">🎥</div>`;
+            }
+          } else {
+            thumbHTML = `<div class="fi" style="background:${item.color || '#ccc'}">${item.initials || '📄'}</div>`;
+          }
+
+          const row = document.createElement('div');
+          row.className = 'file-row';
+          row.innerHTML = `${thumbHTML}<div><div class="fname">${key}</div><div class="fsub">${item.type === 'dir' ? 'File Folder' : (item.niche || 'System File')}</div></div>`;
+          
+          row.addEventListener('click', (e) => {
+            win.querySelectorAll('.file-row.selected').forEach(x => x.classList.remove('selected'));
+            row.classList.add('selected');
+            selectItem(item);
+            e.stopPropagation();
+          });
+
+          row.addEventListener('dblclick', () => {
+            if (item.type === 'dir') {
+              currentDir = item;
+              renderCurrentDir();
+            } else if (item.type === 'image') {
+              const siblings = Object.values(currentDir.children).filter(x => x.type === 'image');
+              const idx = siblings.indexOf(item);
+              openGalleryViewer(siblings, idx);
+            } else if (item.type === 'video') {
+              const idx = VIDEOS.findIndex(v => v.file === item.file);
+              openVideoViewer(idx);
+            } else if (item.type === 'txt' || item.type === 'msg') {
+              openInfoViewer(SYSTEM_APPS[item.app_id]);
+            }
+          });
+
+          list.appendChild(row);
+        });
+      }
+
+      renderCurrentDir();
+
+      win.querySelector('.btn-back').addEventListener('click', () => {
+        if (currentDir.parent) {
+          currentDir = currentDir.parent;
+          renderCurrentDir();
+        }
+      });
+
+      win.querySelector('.btn-close').addEventListener('click', () => closeWindow('explorer'));
+      win.querySelector('.btn-min').addEventListener('click', () => closeWindow('explorer'));
+      win.addEventListener('mousedown', () => bringToFront(win));
+      makeDraggable(win, win.querySelector('.title-bar'));
+      addTaskItem('explorer', 'My Computer', '#dfe6f0');
+    }
+
+    /* ---------- Portfolio Grid / Creative Showcase ---------- */
+    function openPortfolioGrid() {
+      if (openMap.portfolio) { bringToFront(openMap.portfolio); return; }
+      const win = document.createElement('div');
+      win.className = 'xp-window portfolio-win';
+      win.style.right = '24px';
+      win.style.top = '78px';
+      win.style.zIndex = ++zTop;
+      win.innerHTML = `
+        <div class="title-bar">
+          <div class="title-left"><div class="ti" style="background:#f5d97a">🖼️</div><span>Stephan's Creative Showcase</span></div>
+          <div class="title-buttons"><button class="btn-min">_</button><button class="btn-max">▣</button><button class="btn-close">✕</button></div>
+        </div>
+        <div class="menu-bar"><span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Help</span></div>
+        <div class="addr-row">
+          <span class="lab">Location</span>
+          <div class="addr-bar"><span>My Portfolio / Featured Designs</span></div>
+        </div>
+        <div class="portfolio-tabs">
+          <div class="portfolio-tab active" data-filter="all">All Work</div>
+          <div class="portfolio-tab" data-filter="dtc">DTC Brand Ads</div>
+          <div class="portfolio-tab" data-filter="tech">Technical & Specs</div>
+          <div class="portfolio-tab" data-filter="art">University Art</div>
+          <div class="portfolio-tab" data-filter="posters">Graphic Posters</div>
+          <div class="portfolio-tab" data-filter="personal">Robotics & Personal</div>
+          <div class="portfolio-tab" data-filter="videos">Videos</div>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-grid" id="portfolio-grid"></div>
+        </div>
+        <div class="status-bar" id="portfolio-status">0 item(s) found</div>
+      `;
+      document.getElementById('desktop').appendChild(win);
+      openMap.portfolio = win;
+      const grid = win.querySelector('#portfolio-grid');
+      const statusEl = win.querySelector('#portfolio-status');
+
+      function filterGallery(filterValue) {
+        grid.innerHTML = '';
+        const items = GALLERY_ITEMS.filter(item => {
+          if (filterValue === 'all') return true;
+          if (filterValue === 'videos') return item.type === 'video';
+          return item.category === filterValue;
+        });
+
+        statusEl.textContent = `${items.length} item(s) found in this category`;
+
+        items.forEach((item) => {
+          const el = document.createElement('button');
+          el.className = `portfolio-tile ${item.type}`;
+          
+          let thumbHTML = '';
+          if (item.type === 'video') {
+            thumbHTML = `<span class="portfolio-thumb video-thumb"><span>🎥</span></span>`;
+          } else {
+            thumbHTML = `<img class="portfolio-thumb" src="${item.img}" alt="${item.name}">`;
+          }
+          
+          el.innerHTML = `
+            ${thumbHTML}
+            <span class="portfolio-name">${item.name}</span>
+            <span class="portfolio-type">${item.niche || 'Design'}</span>
+          `;
+          
+          el.addEventListener('dblclick', () => {
+            if (item.type === 'video') {
+              const idx = VIDEOS.findIndex(v => v.file === item.file);
+              openVideoViewer(idx);
+            } else {
+              const imageItems = GALLERY_ITEMS.filter(i => i.type === 'image');
+              const idx = imageItems.indexOf(item);
+              openGalleryViewer(imageItems, idx);
+            }
+          });
+          
+          el.addEventListener('click', () => {
+            grid.querySelectorAll('.portfolio-tile.selected').forEach(x => x.classList.remove('selected'));
+            el.classList.add('selected');
+          });
+          
+          grid.appendChild(el);
+        });
+      }
+
+      win.querySelectorAll('.portfolio-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          win.querySelectorAll('.portfolio-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          filterGallery(tab.dataset.filter);
+        });
+      });
+
+      filterGallery('all');
+
+      win.querySelector('.btn-close').addEventListener('click', () => closeWindow('portfolio'));
+      win.querySelector('.btn-min').addEventListener('click', () => closeWindow('portfolio'));
+      win.addEventListener('mousedown', () => bringToFront(win));
+      makeDraggable(win, win.querySelector('.title-bar'));
+      addTaskItem('portfolio', 'Creative Showcase', '#f5d97a');
+    }
+
+    /* ---------- Gallery Viewer (Navigable within Active List Context) ---------- */
+    function openGalleryViewer(itemsList, idx) {
+      if (!itemsList || itemsList.length === 0) return;
+      galleryIdx = ((idx % itemsList.length) + itemsList.length) % itemsList.length;
+      const item = itemsList[galleryIdx];
+      let win = openMap['gallery'];
+      if (!win) {
+        win = document.createElement('div');
+        win.className = 'xp-window viewer-win';
+        win.style.left = '150px'; win.style.top = '120px'; win.style.zIndex = ++zTop;
+        win.innerHTML = `
+      <div class="title-bar">
+        <div class="title-left"><div class="ti" id="gallery-dot">🖼️</div><span id="gallery-title"></span></div>
+        <div class="title-buttons"><button class="btn-min">_</button><button class="btn-max">▢</button><button class="btn-close">✕</button></div>
+      </div>
+      <div class="viewer-toolbar"></div>
+      <div class="viewer-body">
+        <div class="viewer-frame">
+          <img id="gallery-img" alt="" style="max-width:100%;max-height:280px;display:none;">
+          <div class="viewer-img" id="gallery-placeholder"></div>
+        </div>
+      </div>
+      <div class="viewer-controls">
+        <div class="vc-btn vc-zoom-in">🔍+</div><div class="vc-btn vc-zoom-out">🔍−</div>
+        <div class="vc-btn vc-prev">◀◀</div><div class="vc-btn vc-next">▶▶</div>
+      </div>
+    `;
+        document.getElementById('desktop').appendChild(win);
+        openMap['gallery'] = win;
+        win.querySelector('.btn-close').addEventListener('click', () => closeWindow('gallery'));
+        win.querySelector('.btn-min').addEventListener('click', () => closeWindow('gallery'));
+        win.querySelector('.btn-max').addEventListener('click', () => toggleWindowMaximize(win));
+        win.addEventListener('mousedown', () => bringToFront(win));
+        makeDraggable(win, win.querySelector('.title-bar'));
+        addTaskItem('gallery', 'Photo Viewer', '#dfe6f0');
+      }
+
+      win.querySelector('.vc-prev').onclick = () => openGalleryViewer(itemsList, galleryIdx - 1);
+      win.querySelector('.vc-next').onclick = () => openGalleryViewer(itemsList, galleryIdx + 1);
+
+      document.getElementById('gallery-title').textContent = item.file;
+      document.getElementById('gallery-dot').style.background = item.color || '#fff';
+      const img = document.getElementById('gallery-img');
+      const ph = document.getElementById('gallery-placeholder');
+      img.style.display = 'none';
+      ph.style.display = 'flex'; ph.style.background = item.color || '#ccc'; ph.textContent = item.name;
+      img.onload = () => { img.style.display = 'block'; ph.style.display = 'none'; };
+      img.onerror = () => { img.style.display = 'none'; ph.style.display = 'flex'; };
+      img.src = item.img;
+      bringToFront(win);
+    }
+
+    /* ---------- Video Viewer ---------- */
+    function openVideoViewer(idx) {
+      const item = VIDEOS[((idx % VIDEOS.length) + VIDEOS.length) % VIDEOS.length];
+      let win = openMap.video;
+      if (!win) {
+        win = document.createElement('div');
+        win.className = 'xp-window viewer-win';
+        win.style.left = '150px'; win.style.top = '120px'; win.style.zIndex = ++zTop;
+        win.innerHTML = `<div class="title-bar"><div class="title-left"><div class="ti" id="video-dot">🎥</div><span id="video-title"></span></div><div class="title-buttons"><button class="btn-min">_</button><button class="btn-max">▣</button><button class="btn-close">✕</button></div></div><div class="viewer-toolbar"></div><div class="viewer-body"><div class="viewer-frame"><video id="portfolio-video" controls style="width:100%;max-height:280px;display:block;"></video></div></div>`;
+        document.getElementById('desktop').appendChild(win);
+        openMap.video = win;
+        win.querySelector('.btn-close').addEventListener('click', () => closeWindow('video'));
+        win.querySelector('.btn-min').addEventListener('click', () => closeWindow('video'));
+        win.addEventListener('mousedown', () => bringToFront(win));
+        makeDraggable(win, win.querySelector('.title-bar'));
+        addTaskItem('video', 'Video Work', '#7ea8ff');
+      }
+      document.getElementById('video-title').textContent = item.file;
+      document.getElementById('video-dot').style.background = item.color || '#7ea8ff';
+      const player = document.getElementById('portfolio-video');
+      player.src = item.img;
+      player.load();
+      bringToFront(win);
+    }
+
+    /* ---------- Info Viewer (About Me / Contact) ---------- */
+    function openInfoViewer(p) {
+      if (openMap[p.id]) { bringToFront(openMap[p.id]); return; }
+      const win = document.createElement('div');
+      win.className = 'xp-window viewer-win';
+      const offset = Object.keys(openMap).length * 22;
+      win.style.left = (140 + offset) + 'px'; win.style.top = (120 + offset) + 'px'; win.style.zIndex = ++zTop;
+      win.innerHTML = `
+    <div class="title-bar">
+      <div class="title-left"><div class="ti" style="background:${p.color}">ℹ️</div><span>${p.file}</span></div>
+      <div class="title-buttons"><button class="btn-min">_</button><button class="btn-max">▢</button><button class="btn-close">✕</button></div>
+    </div>
+    <div class="viewer-toolbar"></div>
+    <div class="viewer-body">
+      <div class="viewer-frame">
+        ${p.img ? `<img src="${p.img}" alt="${p.name}" style="max-width:100%;max-height:280px;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">` : ''}
+        <div class="viewer-img" style="background:${p.color};${p.img ? 'display:none;' : ''}">${p.name}<br><span style="font-weight:normal;font-size:11px;">${p.sub}</span></div>
+      </div>
+      <div class="viewer-caption">${p.desc}</div>
+      <div class="viewer-tags">${p.tags.map(t => `<span class="vtag">${t}</span>`).join('')}</div>
+    </div>
+  `;
+      document.getElementById('desktop').appendChild(win);
+      openMap[p.id] = win;
+
+      win.querySelector('.btn-close').addEventListener('click', () => closeWindow(p.id));
+      win.querySelector('.btn-min').addEventListener('click', () => closeWindow(p.id));
+      win.addEventListener('mousedown', () => bringToFront(win));
+      makeDraggable(win, win.querySelector('.title-bar'));
+      addTaskItem(p.id, p.name, p.color);
+    }
+
+    function toggleWindowMaximize(win) {
+      const isMaximized = win.classList.toggle('window-maximized');
+      const button = win.querySelector('.btn-max');
+      if (button) button.textContent = isMaximized ? '❐' : '▢';
+      bringToFront(win);
+    }
+
+    function bringToFront(win) {
+      document.querySelectorAll('.xp-window').forEach(w => w.classList.add('inactive'));
+      win.classList.remove('inactive');
+      win.style.zIndex = ++zTop;
+      document.querySelectorAll('.task-item').forEach(t => t.classList.remove('active'));
+      const id = Object.keys(openMap).find(k => openMap[k] === win);
+      const t = document.querySelector(`.task-item[data-id="${id}"]`);
+      if (t) t.classList.add('active');
+    }
+    function closeWindow(id) {
+      const win = openMap[id];
+      if (win) { win.remove(); delete openMap[id]; }
+      const task = document.querySelector(`.task-item[data-id="${id}"]`);
+      if (task) task.remove();
+    }
+    function addTaskItem(id, name, color) {
+      const item = document.createElement('div');
+      item.className = 'task-item active';
+      item.dataset.id = id;
+      item.innerHTML = `<span class="ti" style="background:${color}"></span> ${name}`;
+      item.addEventListener('click', () => bringToFront(openMap[id]));
+      document.querySelectorAll('.task-item').forEach(t => t.classList.remove('active'));
+      document.getElementById('open-windows').appendChild(item);
+    }
+    function makeDraggable(win, handle) {
+      let dragging = false, sx = 0, sy = 0, ox = 0, oy = 0;
+      handle.addEventListener('mousedown', (e) => {
+        if (win.classList.contains('window-maximized')) return;
+        dragging = true; sx = e.clientX; sy = e.clientY;
+        const r = win.getBoundingClientRect(); ox = r.left; oy = r.top;
+        e.preventDefault();
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (!dragging) return;
+        win.style.left = Math.max(0, ox + (e.clientX - sx)) + 'px';
+        win.style.top = Math.max(0, oy + (e.clientY - sy)) + 'px';
+      });
+      window.addEventListener('mouseup', () => dragging = false);
+    }
+
+    /* ---------- Start menu ---------- */
+    const smLeft = document.getElementById('sm-left');
+    const startMenuItem = (label, color, onOpen) => {
+      const el = document.createElement('div');
+      el.className = 'sm-item';
+      el.innerHTML = `<span class="ic" style="background:${color}"></span> ${label}`;
+      el.addEventListener('click', () => { onOpen(); document.getElementById('start-menu').classList.remove('show'); });
+      return el;
+    };
+    smLeft.appendChild(startMenuItem('My Computer', '#dfe6f0', openExplorer));
+    smLeft.appendChild(startMenuItem('Photo Viewer', '#c6ff5e', () => {
+      const imageItems = GALLERY_ITEMS.filter(i => i.type === 'image');
+      openGalleryViewer(imageItems, 0);
+    }));
+    smLeft.appendChild(startMenuItem('Video Work', '#7ea8ff', () => openVideoViewer(0)));
+
+    const startBtn = document.getElementById('start-btn');
+    const startMenu = document.getElementById('start-menu');
+    startBtn.addEventListener('click', (e) => { startMenu.classList.toggle('show'); e.stopPropagation(); });
+    document.addEventListener('click', (e) => {
+      if (!startMenu.contains(e.target) && e.target !== startBtn) startMenu.classList.remove('show');
+    });
+    startMenu.querySelectorAll('[data-open]').forEach(el => {
+      el.addEventListener('click', () => { openInfoViewer(SYSTEM_APPS[el.dataset.open]); startMenu.classList.remove('show'); });
+    });
+
+    document.getElementById('shutdown-btn').addEventListener('click', () => {
+      startMenu.classList.remove('show');
+      const boot = document.getElementById('boot');
+      boot.style.display = 'flex'; boot.style.opacity = '1';
+      setTimeout(() => { boot.style.opacity = '0'; setTimeout(() => boot.style.display = 'none', 600); }, 1400);
+    });
+
+    function tick() {
+      const d = new Date();
+      let h = d.getHours(); const m = String(d.getMinutes()).padStart(2, '0');
+      const ap = h >= 12 ? 'PM' : 'AM'; h = h % 12; if (h === 0) h = 12;
+      document.getElementById('clock').textContent = `${h}:${m} ${ap}`;
+    }
+    tick(); setInterval(tick, 15000);
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const boot = document.getElementById('boot');
+        boot.style.opacity = '0';
+        setTimeout(() => {
+          boot.style.display = 'none';
+          openExplorer();
+          openPortfolioGrid();
+          openInfoViewer(SYSTEM_APPS.about);
+          if (openMap.about) {
+            openMap.about.style.left = '34px';
+            openMap.about.style.top = '42px';
+          }
+        }, 600);
+      }, 1500);
+    });
+  </script>
+
+</body>
+
+</html>
